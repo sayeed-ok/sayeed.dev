@@ -1,6 +1,10 @@
 import Project from "../components/Project"
 import { useRevealOnce } from "../utilities/useRevealOnce"
-import { Lamp } from "../components/Lamp"
+
+//  Images
+import ProjectImg1 from "../assets/projects/bare-minimum.png"
+
+
 
 export default function Projects() {
     const [sectionRef, active] = useRevealOnce();
@@ -20,7 +24,7 @@ export default function Projects() {
           href={"https://bare-minimum-workspace.vercel.app/"}
           title2={"for Github"}
           href2={"https://github.com/sayeed-ok/The-Bare-Minimum-Workspace"}
-          src={"/src/assets/projects/bare-minimum.png"}
+          src={ProjectImg1}
         />
         
           

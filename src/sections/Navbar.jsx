@@ -1,6 +1,8 @@
 import { motion } from "motion/react"
 import { useState,useEffect, useRef } from "react"
-
+// Images
+import menuOpenImg from "../assets/menu.svg"
+import menuCloseImg from "../assets/close.svg"
 
 
 export default function Navbar() {
@@ -62,7 +64,7 @@ export default function Navbar() {
 
         <button onClick={() => setIsMenuopen(prev => !prev)}
           className="flex cursor-pointer text-neutral-400 hover:text-white focus:outline-none sm:hidden"
-        > <img src={isMenuopen ? "src/assets/close.svg" : "src/assets/menu.svg"} className="w-6 h-6" alt="" /></button>
+        > <img src={isMenuopen ? menuCloseImg : menuOpenImg} className="w-6 h-6" alt="" /></button>
 
         <nav className="hidden sm:flex">
           <Navigation />
