@@ -1,0 +1,300 @@
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #030412;
+  --color-midnight: #06091f;
+  --color-navy: #161a31;
+  --color-indigo: #1f1e39;
+  --color-storm: #282b4b;
+  --color-aqua: #33c2cc;
+  --color-mint: #57db96;
+  --color-royal: #5c33cc;
+  --color-lavender: #7a57db;
+  --color-fuchsia: #ca2f8c;
+  --color-orange: #cc6033;
+  --color-sand: #d6995c;
+  --color-coral: #ea4884;
+  --animate-orbit: orbit 50s linear infinite;
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+
+    100% {
+      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }
+
+  --animate-marquee: marquee 50s linear infinite;
+  --animate-marquee-vertical: marquee-vertical 50s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+body {
+  background: #030412;
+  font-family: "Funnel Display", sans-serif;
+  color: white;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+section {
+  scroll-margin-top: 40px; /* navbar height + breathing room */
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 8px 30px rgba(0, 0, 0, 0.35);
+}
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("/noise.png");
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* 🔖glass blob for hero section mobile view */
+.glass-blob {
+  padding: 4rem;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+
+  /* 🔥 THE KEY PART */
+  mask-image: url("/src/assets/blob-5.gif");
+  -webkit-mask-image: url("/src/assets/blob-5.gif");
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-position: center;
+
+  /* fake glass border */
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+/*🔖glow effect on project section */
+.lamp-line {
+  position: relative;
+  height: 2px;
+  background: #22d3ee;
+
+  transform: scaleX(0);
+  transform-origin: center;
+}
+/* trigger */
+.lamp-line.is-active {
+  animation: lamp-grow 0.9s cubic-bezier(.16, 1, .3, 1) forwards;
+}
+@keyframes lamp-grow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+/* uneven glow */
+.lamp-line::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 122%;
+  height: 40rem;
+  background:
+    radial-gradient(ellipse at 40% 0%,
+      rgba(34, 211, 238, 0.45),
+      rgba(139, 92, 246, 0.25),
+      transparent 70%),
+    radial-gradient(ellipse at 60% 0%,
+      rgba(34, 211, 238, 0.35),
+      rgba(139, 92, 246, 0.2),
+      transparent 75%);
+  filter: blur(12px);
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*     SECTIONS */
+
+.c-space {
+  @apply sm:px-10 px-5 lg:px-15;
+}
+
+.hover-animation {
+  @apply hover:-translate-y-1 duration-200;
+}
+
+.section-spacing {
+  @apply min-h-screen mt-20 md:mt-30;
+}
+
+.text-heading {
+  @apply font-bold text-3xl md:text-4xl;
+}
+
+.headtext {
+  @apply mt-2 mb-2 text-xl;
+}
+
+.subtext {
+  @apply text-neutral-400 text-sm md:text-base text-pretty;
+}
+
+/* Navigation */
+.nav-ul {
+  @apply flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative z-20;
+}
+
+.nav-li {
+  @apply text-neutral-400 hover:text-white max-sm:w-full max-sm:rounded-md py-2 max-sm:px-5;
+}
+
+.nav-link {
+  @apply text-lg md:text-base hover:text-white transition-colors;
+}
+
+/* Button Components */
+.btn {
+  @apply relative px-1 py-4 text-sm text-center rounded-full font-extralight bg-primary w-[12rem] cursor-pointer overflow-hidden;
+}
+
+/* About Section */
+.grid-1 {
+  @apply col-span-1   md:col-span-2 md:row-span-1     relative overflow-hidden hover:-translate-y-1 duration-200;
+}
+.grid-2 {
+  @apply col-span-3   md:col-span-3 md:row-span-2     relative overflow-hidden hover:-translate-y-1 duration-200;
+}
+.grid-3 {
+  @apply col-span-2   md:col-span-2 md:row-span-1     relative overflow-hidden hover:-translate-y-1 duration-200;
+}
+.grid-4 {
+  @apply col-span-3   md:col-span-3 md:row-span-2     relative overflow-hidden hover:-translate-y-1 duration-200;
+}
+.grid-5 {
+  @apply col-span-2   md:col-span-2 md:row-span-1     relative overflow-hidden hover:-translate-y-1 duration-200;
+}
+.grid-6 {
+  @apply col-span-1   md:col-span-2 md:row-span-1    relative overflow-hidden hover:-translate-y-1 duration-200;
+}
+
+
+.grid-default-color {
+  @apply p-6 bg-linear-to-b from-storm to-indigo rounded-2xl;
+}
+
+.grid-special-color {
+  @apply p-6 bg-linear-to-b from-royal to-lavender rounded-2xl;
+}
+
+.grid-black-color {
+  @apply p-6 bg-linear-to-tl from-[#3A3A3A] via-[#242424] to-[#3A3A3A] rounded-2xl;
+}
+
+/*  Grid2 items */
+.card1 {
+  @apply bottom-13 left-14 -rotate-6 z-10 md:bottom-9 md:left-3 md:-rotate-30
+}
+.card2 {
+  @apply bottom-20 left-23 -rotate-12 md:top-32 md:left-84.5 md:rotate-43 z-20
+}
+.card3 {
+  @apply bottom-9 right-26 rotate-90 md:top-14 md:left-63
+}
+.card4 {
+  @apply bottom-21 right-10 rotate-55 md:bottom-14 md:right-60 md:rotate-0 z-10
+}
+.card5 {
+  @apply bottom-22 left-63 rotate-108 md:bottom-35 md:left-110 md:rotate-0
+}
+.card6 {
+  @apply bottom-19 right-8 -rotate-8 md:bottom-0 md:left-20 md:rotate-60 
+}
+
+
+/* Contact Section*/
+.field-label {
+  @apply text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70;
+}
+
+.field-input {
+  @apply w-full min-h-10 rounded-md px-3 py-2 text-sm bg-white/10 transition duration-200 placeholder-neutral-500 border border-white/10 mt-2;
+}
+
+.field-input-focus {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20;
+}
