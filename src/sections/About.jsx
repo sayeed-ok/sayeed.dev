@@ -4,7 +4,6 @@ import { useRef } from "react"
 import Card from "../components/Card"
 import { Globe } from "../components/Globe"
 import CopyEmailButton from "../components/CopyEmailButton"
-import Frameworks from "../components/Frameworks"
 import LogoOrigami from "../components/logoOrigamiEffect/logoOrigami"
 // Images
 import grid1Img from "../assets/coding-pov.png"
